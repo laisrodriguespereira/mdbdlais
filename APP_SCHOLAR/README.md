@@ -98,6 +98,7 @@ appscholar/
 ├── app.json
 ├── package.json
 ├── .gitignore
+├── videos_app_scholar.txt
 └── README.md
 ```
 
@@ -110,6 +111,7 @@ appscholar/
 * **package.json:** contém as dependências e os comandos utilizados para executar o projeto.
 * **app.json:** arquivo de configuração do projeto Expo.
 * **index.js:** ponto de entrada da aplicação.
+* **videos_app_scholar.txt:** tem um link do drive onde leva para os vídeos explicativos sobre o app.
 * **.gitignore:** define arquivos e pastas que não devem ser enviados para o controle de versão.
 
 ## Como executar

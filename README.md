@@ -26,7 +26,7 @@ mdbdlais/
 
 ---
 
-## 📱 APP_SCHOLAR
+## APP_SCHOLAR
 
 Aplicativo mobile em **React Native (Expo)** para gestão escolar, com CRUD de alunos, professores, turmas, cursos, disciplinas, matrículas, responsáveis, avaliações, coordenadores e boletins. Foi modelado com base em um esquema de banco de dados **MySQL/MariaDB**.
 
@@ -45,11 +45,11 @@ Aplicativo mobile em **React Native (Expo)** para gestão escolar, com CRUD de a
 | `dicionario_dados.pdf` | Dicionário de dados do banco escolar |
 | `videos_app_scholar.txt` | Link do Drive com os vídeos explicativos do app |
 
-📄 Mais detalhes (funcionalidades, como funciona a conexão com o banco, etc.) no [README do APP_SCHOLAR](./APP_SCHOLAR/README.md).
+Mais detalhes (funcionalidades, como funciona a conexão com o banco, etc.) no [README do APP_SCHOLAR](./APP_SCHOLAR/README.md).
 
 ---
 
-## 🗄️ MDBD
+##  MDBD
 
 Pasta com a documentação do **banco de dados escolar** em sua versão atual, o mesmo utilizado no APP_SCHOLAR.
 
@@ -63,7 +63,7 @@ Pasta com a documentação do **banco de dados escolar** em sua versão atual, o
 
 ---
 
-## 🕒 atividadebd3
+## atividadebd3
 
 Contém o banco de dados escolar em sua **primeira versão**, criado no 2º bimestre.
 
@@ -75,7 +75,7 @@ Contém o banco de dados escolar em sua **primeira versão**, criado no 2º bime
 
 ---
 
-## ✏️ modelagem
+## modelagem
 
 Atividade avaliativa do 2º bimestre, na introdução da matéria de Banco de Dados. O enunciado pedia:
 
@@ -128,6 +128,6 @@ O link do vídeo em que apresento e explico o APP_SCHOLAR está no arquivo `vide
 
 ---
 
-## 📖 Contexto
+## Contexto
 
 Todos os conteúdos deste repositório são **atividades e trabalhos acadêmicos** realizados no curso de **Desenvolvimento de Sistemas** da **ETEC de São José dos Campos**.

@@ -57,7 +57,7 @@ Pasta com a documentação do **banco de dados escolar** em sua versão atual, o
 |---------|-----------|
 | `DOCUMENTO.pdf` | Documento explicando como o banco de dados escolar foi pensado e desenvolvido |
 | `dicionario_dados.pdf` | Dicionário de dados, com a descrição das tabelas e campos |
-| `escolar.sql` | Script SQL do banco escolar (versão atual) |
+| `escolar.sql` | SQL do banco escolar (versão atual) |
 | `modelagem_escolar.brM3` | Modelagem do banco escolar (versão atual), feita no BrModelo |
 | `videos_app_scholar.txt` | Link do Drive com o vídeo em que explico o APP_SCHOLAR |
 

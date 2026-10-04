@@ -30,7 +30,7 @@ mdbdlais/
 
 Aplicativo mobile em **React Native (Expo)** para gestão escolar, com CRUD de alunos, professores, turmas, cursos, disciplinas, matrículas, responsáveis, avaliações, coordenadores e boletins. Foi modelado com base em um esquema de banco de dados **MySQL/MariaDB**.
 
-> ⚠️ **Estado atual:** o módulo de **Alunos** já está integrado ao banco de dados real (via API em PHP). Os demais módulos ainda utilizam **dados simulados** no código.
+>  **Estado atual:** o módulo de **Alunos** já está integrado ao banco de dados real (via API em PHP). Os demais módulos ainda utilizam **dados simulados** no código.
 
 | Item | Descrição |
 |------|-----------|

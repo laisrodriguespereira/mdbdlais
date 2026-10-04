@@ -96,6 +96,9 @@ appscholar/
 ├── App.js
 ├── index.js
 ├── app.json
+├── dicionario_dados.pdf
+├── escolar.sql
+├── modelagem_escolar.brM3
 ├── package.json
 ├── .gitignore
 ├── videos_app_scholar.txt
@@ -110,6 +113,9 @@ appscholar/
 * **assets/:** armazena imagens e recursos visuais utilizados pela aplicação, incluindo o logotipo.
 * **package.json:** contém as dependências e os comandos utilizados para executar o projeto.
 * **app.json:** arquivo de configuração do projeto Expo.
+* **dicionario_dados.pdf:** dicionário de dados do banco escolar.
+* **escolar.sql:** banco de dados utilizado.
+* **modelagem_escolar.brM3:** modelagem do banco escolar.
 * **index.js:** ponto de entrada da aplicação.
 * **videos_app_scholar.txt:** tem um link do drive onde leva para os vídeos explicativos sobre o app.
 * **.gitignore:** define arquivos e pastas que não devem ser enviados para o controle de versão.

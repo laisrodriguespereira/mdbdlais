@@ -9,22 +9,35 @@ export default function CadastroAlunoScreen({ onSalvar, onCancelar }) {
   const [cpf, setCpf] = useState('');
   const [numeroCasa, setNumeroCasa] = useState('');
   const [complemento, setComplemento] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
+  const [cep, setCep] = useState('');
+  const [rua, setRua] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [cidade, setCidade] = useState('');
+  const [uf, setUf] = useState('');
   const [status, setStatus] = useState('A');
 
   function salvar() {
-    if (!ra || !nome || !dataNascimento || !cpf || !numeroCasa) {
+    if (!ra || !nome || !dataNascimento || !cpf || !numeroCasa || !telefone || !email || !cep || !rua || !bairro || !cidade || !uf) {
       alert('Preencha todos os campos obrigatórios (*)');
       return;
     }
 
     const novoAluno = {
-      id: Date.now().toString(),
       ra_aluno: ra,
       nome: nome,
       data_de_nascimento: dataNascimento,
       cpf: cpf,
       numero_da_casa: numeroCasa,
       complemento: complemento,
+      telefone: telefone,
+      email: email,
+      cep: cep,
+      rua: rua,
+      bairro: bairro,
+      cidade: cidade,
+      uf: uf,
       status: status,
     };
 
@@ -75,6 +88,50 @@ export default function CadastroAlunoScreen({ onSalvar, onCancelar }) {
           onChangeText={setRa}
         />
 
+        <Text style={styles.secao}>Contato</Text>
+
+        <Text style={styles.label}>Telefone *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="(00) 00000-0000"
+          value={telefone}
+          onChangeText={setTelefone}
+          keyboardType="phone-pad"
+          maxLength={20}
+        />
+
+        <Text style={styles.label}>E-mail *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="aluno@email.com"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          maxLength={120}
+        />
+
+        <Text style={styles.secao}>Endereço</Text>
+
+        <Text style={styles.label}>CEP *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="00000-000"
+          value={cep}
+          onChangeText={setCep}
+          keyboardType="numeric"
+          maxLength={9}
+        />
+
+        <Text style={styles.label}>Rua *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Nome da rua"
+          value={rua}
+          onChangeText={setRua}
+          maxLength={100}
+        />
+
         <Text style={styles.label}>Número da casa *</Text>
         <TextInput
           style={styles.input}
@@ -90,6 +147,34 @@ export default function CadastroAlunoScreen({ onSalvar, onCancelar }) {
           placeholder="Apto, bloco, etc."
           value={complemento}
           onChangeText={setComplemento}
+        />
+
+        <Text style={styles.label}>Bairro *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Nome do bairro"
+          value={bairro}
+          onChangeText={setBairro}
+          maxLength={100}
+        />
+
+        <Text style={styles.label}>Cidade *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Nome da cidade"
+          value={cidade}
+          onChangeText={setCidade}
+          maxLength={100}
+        />
+
+        <Text style={styles.label}>UF *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="SP"
+          value={uf}
+          onChangeText={setUf}
+          autoCapitalize="characters"
+          maxLength={2}
         />
 
         <Text style={styles.label}>Status</Text>
@@ -163,6 +248,7 @@ const styles = StyleSheet.create({
   statusBotaoInativo: { backgroundColor: '#DC2626', borderColor: '#DC2626' },
   statusTexto: { color: '#6B7280', fontWeight: '600' },
   statusTextoAtivo: { color: '#FFFFFF' },
+  secao: { fontSize: 16, fontWeight: 'bold', color: '#14213D', marginTop: 24 },
   botoes: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 24 },
   botaoCancelar: {
     flex: 1,

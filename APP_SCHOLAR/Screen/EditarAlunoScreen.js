@@ -9,9 +9,21 @@ export default function EditarAlunoScreen({ aluno, onSalvar, onCancelar, onExclu
   const [ra, setRa] = useState(aluno.ra_aluno);
   const [numeroCasa, setNumeroCasa] = useState(String(aluno.numero_da_casa));
   const [complemento, setComplemento] = useState(aluno.complemento || '');
+  const [telefone, setTelefone] = useState(aluno.telefone || '');
+  const [email, setEmail] = useState(aluno.email || '');
+  const [cep, setCep] = useState(aluno.cep || '');
+  const [rua, setRua] = useState(aluno.rua || '');
+  const [bairro, setBairro] = useState(aluno.bairro || '');
+  const [cidade, setCidade] = useState(aluno.cidade || '');
+  const [uf, setUf] = useState(aluno.uf || '');
   const [status, setStatus] = useState(aluno.status);
 
   function salvar() {
+    if (!nome || !dataNascimento || !cpf || !ra || !numeroCasa || !telefone || !email || !cep || !rua || !bairro || !cidade || !uf) {
+      Alert.alert('Atenção', 'Preencha todos os campos obrigatórios (*)');
+      return;
+    }
+
     const alunoAtualizado = {
       ...aluno,
       nome: nome,
@@ -20,6 +32,13 @@ export default function EditarAlunoScreen({ aluno, onSalvar, onCancelar, onExclu
       ra_aluno: ra,
       numero_da_casa: numeroCasa,
       complemento: complemento,
+      telefone: telefone,
+      email: email,
+      cep: cep,
+      rua: rua,
+      bairro: bairro,
+      cidade: cidade,
+      uf: uf,
       status: status,
     };
     onSalvar(alunoAtualizado);
@@ -57,11 +76,94 @@ export default function EditarAlunoScreen({ aluno, onSalvar, onCancelar, onExclu
         <Text style={styles.label}>RA *</Text>
         <TextInput style={styles.input} value={ra} onChangeText={setRa} />
 
+        <Text style={styles.secao}>Contato</Text>
+
+        <Text style={styles.label}>Telefone *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="(00) 00000-0000"
+          value={telefone}
+          onChangeText={setTelefone}
+          keyboardType="phone-pad"
+          maxLength={20}
+        />
+
+        <Text style={styles.label}>E-mail *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="aluno@email.com"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          maxLength={120}
+        />
+
+        <Text style={styles.secao}>Endereço</Text>
+
+        <Text style={styles.label}>CEP *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="00000-000"
+          value={cep}
+          onChangeText={setCep}
+          keyboardType="numeric"
+          maxLength={9}
+        />
+
+        <Text style={styles.label}>Rua *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Nome da rua"
+          value={rua}
+          onChangeText={setRua}
+          maxLength={100}
+        />
+
         <Text style={styles.label}>Número da casa *</Text>
-        <TextInput style={styles.input} value={numeroCasa} onChangeText={setNumeroCasa} keyboardType="numeric" />
+        <TextInput
+          style={styles.input}
+          placeholder="Ex: 123"
+          value={numeroCasa}
+          onChangeText={setNumeroCasa}
+          keyboardType="numeric"
+        />
 
         <Text style={styles.label}>Complemento</Text>
-        <TextInput style={styles.input} value={complemento} onChangeText={setComplemento} />
+        <TextInput
+          style={styles.input}
+          placeholder="Apto, bloco, etc."
+          value={complemento}
+          onChangeText={setComplemento}
+        />
+
+        <Text style={styles.label}>Bairro *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Nome do bairro"
+          value={bairro}
+          onChangeText={setBairro}
+          maxLength={100}
+        />
+
+        <Text style={styles.label}>Cidade *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Nome da cidade"
+          value={cidade}
+          onChangeText={setCidade}
+          maxLength={100}
+        />
+
+        <Text style={styles.label}>UF *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="SP"
+          value={uf}
+          onChangeText={setUf}
+          autoCapitalize="characters"
+          maxLength={2}
+        />
 
         <Text style={styles.label}>Status</Text>
         <View style={styles.statusContainer}>
@@ -134,6 +236,7 @@ const styles = StyleSheet.create({
   statusBotaoInativo: { backgroundColor: '#DC2626', borderColor: '#DC2626' },
   statusTexto: { color: '#6B7280', fontWeight: '600' },
   statusTextoAtivo: { color: '#FFFFFF' },
+  secao: { fontSize: 16, fontWeight: 'bold', color: '#14213D', marginTop: 24 },
   botoes: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 24 },
   botaoCancelar: {
     flex: 1,

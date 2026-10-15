@@ -53,9 +53,9 @@ export default function ConsultaProfessoresScreen({
               <View style={{ flex: 1 }}>
                 <Text style={styles.cardNome}>{item.nome}</Text>
                 <Text style={styles.cardInfo}>CPF: {item.cpf}</Text>
-                <Text style={styles.cardInfo}>
-                  Formação: {item.id_formacoes || '-'} • Contato: {item.id_contato || '-'}
-                </Text>
+                <Text style={styles.cardInfo}>Formação: {item.formacao || '-'}</Text>
+                <Text style={styles.cardInfo}>Telefone: {item.telefone || '-'}</Text>
+                <Text style={styles.cardInfo}>E-mail: {item.email || '-'}</Text>
               </View>
               <Pressable onPress={() => onEditarProfessor(item)} style={{ marginRight: 12 }}>
                 <Ionicons name="pencil" size={20} color="#2563EB" />

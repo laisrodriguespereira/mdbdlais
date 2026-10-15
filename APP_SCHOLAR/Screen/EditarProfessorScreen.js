@@ -2,19 +2,33 @@ import { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, ScrollView, Pressable, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function EditarProfessorScreen({ professor, onSalvar, onCancelar, onExcluir }) {
+export default function EditarProfessorScreen({ professor, formacoes = [], onSalvar, onCancelar, onExcluir }) {
   const [nome, setNome] = useState(professor.nome);
   const [cpf, setCpf] = useState(professor.cpf);
   const [idFormacoes, setIdFormacoes] = useState(String(professor.id_formacoes || ''));
-  const [idContato, setIdContato] = useState(String(professor.id_contato || ''));
+  const [outraFormacao, setOutraFormacao] = useState(false);
+  const [novaFormacao, setNovaFormacao] = useState('');
+  const [telefone, setTelefone] = useState(professor.telefone || '');
+  const [email, setEmail] = useState(professor.email || '');
 
   function salvar() {
+    if (!nome || !cpf || !telefone || !email) {
+      Alert.alert('Atenção', 'Preencha todos os campos obrigatórios (*)');
+      return;
+    }
+    if (outraFormacao && !novaFormacao.trim()) {
+      Alert.alert('Atenção', 'Digite o nome da nova formação');
+      return;
+    }
+
     const professorAtualizado = {
       ...professor,
       nome: nome,
       cpf: cpf,
-      id_formacoes: idFormacoes,
-      id_contato: idContato,
+      id_formacoes: outraFormacao ? '' : idFormacoes,
+      nova_formacao: outraFormacao ? novaFormacao.trim() : '',
+      telefone: telefone,
+      email: email,
     };
     onSalvar(professorAtualizado);
   }
@@ -45,11 +59,64 @@ export default function EditarProfessorScreen({ professor, onSalvar, onCancelar,
         <Text style={styles.label}>CPF *</Text>
         <TextInput style={styles.input} value={cpf} onChangeText={setCpf} keyboardType="numeric" />
 
-        <Text style={styles.label}>ID Formação (temporário)</Text>
-        <TextInput style={styles.input} value={idFormacoes} onChangeText={setIdFormacoes} keyboardType="numeric" />
+        <Text style={styles.label}>Formação</Text>
+        <View style={styles.opcoes}>
+          {formacoes.map((f) => {
+            const selecionada = !outraFormacao && String(f.id_formacoes) === String(idFormacoes);
+            return (
+              <Pressable
+                key={f.id_formacoes}
+                style={[styles.opcao, selecionada && styles.opcaoSelecionada]}
+                onPress={() => {
+                  setIdFormacoes(String(f.id_formacoes));
+                  setOutraFormacao(false);
+                }}
+              >
+                <Text style={[styles.opcaoTexto, selecionada && styles.opcaoTextoSelecionado]}>
+                  {f.formacao}
+                </Text>
+              </Pressable>
+            );
+          })}
+          <Pressable
+            style={[styles.opcao, outraFormacao && styles.opcaoSelecionada]}
+            onPress={() => setOutraFormacao(true)}
+          >
+            <Text style={[styles.opcaoTexto, outraFormacao && styles.opcaoTextoSelecionado]}>
+              + Outra formação
+            </Text>
+          </Pressable>
+        </View>
+        {outraFormacao && (
+          <TextInput
+            style={styles.input}
+            placeholder="Digite a nova formação"
+            value={novaFormacao}
+            onChangeText={setNovaFormacao}
+            maxLength={80}
+          />
+        )}
 
-        <Text style={styles.label}>ID Contato (temporário)</Text>
-        <TextInput style={styles.input} value={idContato} onChangeText={setIdContato} keyboardType="numeric" />
+        <Text style={styles.label}>Telefone *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="(00) 00000-0000"
+          value={telefone}
+          onChangeText={setTelefone}
+          keyboardType="phone-pad"
+          maxLength={20}
+        />
+
+        <Text style={styles.label}>E-mail *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="professor@email.com"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          maxLength={120}
+        />
 
         <View style={styles.botoes}>
           <Pressable style={styles.botaoCancelar} onPress={onCancelar}>
@@ -88,6 +155,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E5E5EF',
   },
+  opcoes: { flexDirection: 'row', flexWrap: 'wrap' },
+  opcao: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#E5E5EF',
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    marginRight: 8,
+    marginBottom: 8,
+  },
+  opcaoSelecionada: { backgroundColor: '#14213D', borderColor: '#14213D' },
+  opcaoTexto: { fontSize: 13, color: '#1F1B3A' },
+  opcaoTextoSelecionado: { color: '#FFFFFF', fontWeight: '600' },
   botoes: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 24 },
   botaoCancelar: {
     flex: 1,

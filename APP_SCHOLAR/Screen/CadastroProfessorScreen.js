@@ -2,24 +2,32 @@ import { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, ScrollView, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function CadastroProfessorScreen({ onSalvar, onCancelar }) {
+export default function CadastroProfessorScreen({ formacoes = [], onSalvar, onCancelar }) {
   const [nome, setNome] = useState('');
   const [cpf, setCpf] = useState('');
   const [idFormacoes, setIdFormacoes] = useState('');
-  const [idContato, setIdContato] = useState('');
+  const [outraFormacao, setOutraFormacao] = useState(false);
+  const [novaFormacao, setNovaFormacao] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
 
   function salvar() {
-    if (!nome || !cpf) {
+    if (!nome || !cpf || !telefone || !email) {
       alert('Preencha todos os campos obrigatórios (*)');
+      return;
+    }
+    if (outraFormacao && !novaFormacao.trim()) {
+      alert('Digite o nome da nova formação');
       return;
     }
 
     const novoProfessor = {
-      id_professores: Date.now().toString(),
       nome: nome,
       cpf: cpf,
-      id_formacoes: idFormacoes,
-      id_contato: idContato,
+      id_formacoes: outraFormacao ? '' : idFormacoes,
+      nova_formacao: outraFormacao ? novaFormacao.trim() : '',
+      telefone: telefone,
+      email: email,
     };
 
     onSalvar(novoProfessor);
@@ -53,22 +61,63 @@ export default function CadastroProfessorScreen({ onSalvar, onCancelar }) {
           keyboardType="numeric"
         />
 
-        <Text style={styles.label}>ID Formação (temporário)</Text>
+        <Text style={styles.label}>Formação</Text>
+        <View style={styles.opcoes}>
+          {formacoes.map((f) => {
+            const selecionada = !outraFormacao && String(f.id_formacoes) === String(idFormacoes);
+            return (
+              <Pressable
+                key={f.id_formacoes}
+                style={[styles.opcao, selecionada && styles.opcaoSelecionada]}
+                onPress={() => {
+                  setIdFormacoes(String(f.id_formacoes));
+                  setOutraFormacao(false);
+                }}
+              >
+                <Text style={[styles.opcaoTexto, selecionada && styles.opcaoTextoSelecionado]}>
+                  {f.formacao}
+                </Text>
+              </Pressable>
+            );
+          })}
+          <Pressable
+            style={[styles.opcao, outraFormacao && styles.opcaoSelecionada]}
+            onPress={() => setOutraFormacao(true)}
+          >
+            <Text style={[styles.opcaoTexto, outraFormacao && styles.opcaoTextoSelecionado]}>
+              + Outra formação
+            </Text>
+          </Pressable>
+        </View>
+        {outraFormacao && (
+          <TextInput
+            style={styles.input}
+            placeholder="Digite a nova formação"
+            value={novaFormacao}
+            onChangeText={setNovaFormacao}
+            maxLength={80}
+          />
+        )}
+
+        <Text style={styles.label}>Telefone *</Text>
         <TextInput
           style={styles.input}
-          placeholder="Digite o id_formacoes"
-          value={idFormacoes}
-          onChangeText={setIdFormacoes}
-          keyboardType="numeric"
+          placeholder="(00) 00000-0000"
+          value={telefone}
+          onChangeText={setTelefone}
+          keyboardType="phone-pad"
+          maxLength={20}
         />
 
-        <Text style={styles.label}>ID Contato (temporário)</Text>
+        <Text style={styles.label}>E-mail *</Text>
         <TextInput
           style={styles.input}
-          placeholder="Digite o id_contato"
-          value={idContato}
-          onChangeText={setIdContato}
-          keyboardType="numeric"
+          placeholder="professor@email.com"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          maxLength={120}
         />
 
         <View style={styles.botoes}>
@@ -108,6 +157,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E5E5EF',
   },
+  opcoes: { flexDirection: 'row', flexWrap: 'wrap' },
+  opcao: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#E5E5EF',
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    marginRight: 8,
+    marginBottom: 8,
+  },
+  opcaoSelecionada: { backgroundColor: '#14213D', borderColor: '#14213D' },
+  opcaoTexto: { fontSize: 13, color: '#1F1B3A' },
+  opcaoTextoSelecionado: { color: '#FFFFFF', fontWeight: '600' },
   botoes: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 24 },
   botaoCancelar: {
     flex: 1,

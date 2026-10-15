@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2026 at 02:14 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Tempo de geração: 15/10/2026 às 04:06
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `escolar`
+-- Banco de dados: `escolar`
 --
 CREATE DATABASE IF NOT EXISTS `escolar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `escolar`;
@@ -26,7 +26,7 @@ USE `escolar`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alunos`
+-- Estrutura para tabela `alunos`
 --
 
 DROP TABLE IF EXISTS `alunos`;
@@ -44,13 +44,13 @@ CREATE TABLE `alunos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `alunos`
+-- Despejando dados para a tabela `alunos`
 --
 
 INSERT INTO `alunos` (`id_alunos`, `ra_aluno`, `nome`, `data_de_nascimento`, `cpf`, `numero_da_casa`, `complemento`, `id_contato`, `id_rua`, `status`) VALUES
-(1, '5839201746SP', 'Miguel Araujo', '2008-01-15', '30100000001', 101, 'Casa', 26, 1, 'A'),
-(2, '1048572936SP', 'Laura Monteiro', '2008-02-18', '30100000002', 102, 'Ap 12', 27, 1, 'A'),
-(3, '7283946150SP', 'Henrique Souza', '2008-03-21', '30100000003', 103, 'Fundos', 28, 1, 'A'),
+(1, '5539201746SP', 'Miguel Araujo', '2008-01-15', '30100000001', 112, 'Casa', 26, 1, 'I'),
+(2, '1118572936SP', 'Laura Monteiro', '2008-02-12', '30100000002', 102, 'Ap 12', 27, 1, 'A'),
+(3, '7283946150SP', 'Henrique Souza', '2008-03-21', '30100000003', 103, 'Fundos', 28, 1, 'I'),
 (4, '3918475620SP', 'Gabriela Moraes', '2008-04-12', '30100000004', 104, 'Casa', 29, 1, 'A'),
 (5, '6157283940SP', 'Vinicius Barbosa', '2008-05-08', '30100000005', 105, 'Ap 21', 30, 1, 'A'),
 (6, '8472615930SP', 'Alice Ferreira', '2008-06-19', '30100000006', 106, 'Casa B', 31, 1, 'A'),
@@ -297,12 +297,14 @@ INSERT INTO `alunos` (`id_alunos`, `ra_aluno`, `nome`, `data_de_nascimento`, `cp
 (247, '6374839210SP', 'Wesley Oliveira', '2008-07-24', '30500000047', 347, 'Fundos', 272, 1, 'A'),
 (248, '7285940321SP', 'Yasmin Rocha', '2008-08-28', '30500000048', 348, 'Casa', 273, 1, 'A'),
 (249, '8196051432SP', 'Zoe Pereira', '2008-09-02', '30500000049', 349, 'Bloco H', 274, 1, 'A'),
-(250, '9007162543SP', 'Arthur Souza', '2008-10-06', '30500000050', 350, 'Casa', 275, 1, 'A');
+(250, '9007162543SP', 'Arthur Souza', '2008-10-06', '30500000050', 350, 'Casa', 275, 1, 'A'),
+(251, '1052516231sp', 'Lais Rodrigues ', '2008-08-01', '01532785398', 216, 'Casa', NULL, NULL, 'I'),
+(252, '124762366', 'Larissa Melo', '2000-10-08', '33485172946', 42, 'Casa', 527, 2, 'A');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alunos_responsaveis`
+-- Estrutura para tabela `alunos_responsaveis`
 --
 
 DROP TABLE IF EXISTS `alunos_responsaveis`;
@@ -313,7 +315,7 @@ CREATE TABLE `alunos_responsaveis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `alunos_responsaveis`
+-- Despejando dados para a tabela `alunos_responsaveis`
 --
 
 INSERT INTO `alunos_responsaveis` (`id_alunos_responsaveis`, `id_alunos`, `id_responsaveis`) VALUES
@@ -646,7 +648,7 @@ INSERT INTO `alunos_responsaveis` (`id_alunos_responsaveis`, `id_alunos`, `id_re
 -- --------------------------------------------------------
 
 --
--- Table structure for table `avaliacoes`
+-- Estrutura para tabela `avaliacoes`
 --
 
 DROP TABLE IF EXISTS `avaliacoes`;
@@ -659,7 +661,7 @@ CREATE TABLE `avaliacoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `avaliacoes`
+-- Despejando dados para a tabela `avaliacoes`
 --
 
 INSERT INTO `avaliacoes` (`id_avaliacoes`, `descricao`, `data`, `id_alunos`, `id_disciplinas`) VALUES
@@ -867,7 +869,7 @@ INSERT INTO `avaliacoes` (`id_avaliacoes`, `descricao`, `data`, `id_alunos`, `id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bairros`
+-- Estrutura para tabela `bairros`
 --
 
 DROP TABLE IF EXISTS `bairros`;
@@ -878,16 +880,17 @@ CREATE TABLE `bairros` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `bairros`
+-- Despejando dados para a tabela `bairros`
 --
 
 INSERT INTO `bairros` (`id_bairro`, `nome`, `id_cidade`) VALUES
-(1, 'Jardim Satélite', 1);
+(1, 'Jardim Satélite', 1),
+(2, 'Jardim das flores', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `boletins`
+-- Estrutura para tabela `boletins`
 --
 
 DROP TABLE IF EXISTS `boletins`;
@@ -902,7 +905,7 @@ CREATE TABLE `boletins` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `boletins_disciplinas`
+-- Estrutura para tabela `boletins_disciplinas`
 --
 
 DROP TABLE IF EXISTS `boletins_disciplinas`;
@@ -916,7 +919,7 @@ CREATE TABLE `boletins_disciplinas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cidades`
+-- Estrutura para tabela `cidades`
 --
 
 DROP TABLE IF EXISTS `cidades`;
@@ -927,7 +930,7 @@ CREATE TABLE `cidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cidades`
+-- Despejando dados para a tabela `cidades`
 --
 
 INSERT INTO `cidades` (`id_cidade`, `nome`, `id_uf`) VALUES
@@ -936,7 +939,7 @@ INSERT INTO `cidades` (`id_cidade`, `nome`, `id_uf`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contatos`
+-- Estrutura para tabela `contatos`
 --
 
 DROP TABLE IF EXISTS `contatos`;
@@ -947,7 +950,7 @@ CREATE TABLE `contatos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `contatos`
+-- Despejando dados para a tabela `contatos`
 --
 
 INSERT INTO `contatos` (`id_contato`, `telefone`, `email`) VALUES
@@ -959,7 +962,7 @@ INSERT INTO `contatos` (`id_contato`, `telefone`, `email`) VALUES
 (6, '11977770001', 'adriano.prof@escolar.com'),
 (7, '11977770002', 'bruna.prof@escolar.com'),
 (8, '11977770003', 'cesar.prof@escolar.com'),
-(9, '11977770004', 'debora.prof@escolar.com'),
+(9, '11977771246', 'debora.prof@escolar.com'),
 (10, '11977770005', 'everton.prof@escolar.com'),
 (11, '11977770006', 'flavia.prof@escolar.com'),
 (12, '11977770007', 'gilberto.prof@escolar.com'),
@@ -1475,12 +1478,14 @@ INSERT INTO `contatos` (`id_contato`, `telefone`, `email`) VALUES
 (522, '(12)99724-1149', 'vera.rocha@yahoo.com'),
 (523, '(12)99298-7752', 'daniela.santos@gmail.com'),
 (524, '(12)99846-2231', 'rodrigo.costa@hotmail.com'),
-(525, '(12)99675-8814', 'karla.almeida@gmail.com');
+(525, '(12)99675-8814', 'karla.almeida@gmail.com'),
+(526, '12974230142', 'dairodrigues21@gmail.com'),
+(527, '12764230845', 'larissamelo@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coordenadores`
+-- Estrutura para tabela `coordenadores`
 --
 
 DROP TABLE IF EXISTS `coordenadores`;
@@ -1493,7 +1498,7 @@ CREATE TABLE `coordenadores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `coordenadores`
+-- Despejando dados para a tabela `coordenadores`
 --
 
 INSERT INTO `coordenadores` (`id_coordenadores`, `nome`, `cpf`, `id_contato`, `id_formacoes`) VALUES
@@ -1506,7 +1511,7 @@ INSERT INTO `coordenadores` (`id_coordenadores`, `nome`, `cpf`, `id_contato`, `i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cursos`
+-- Estrutura para tabela `cursos`
 --
 
 DROP TABLE IF EXISTS `cursos`;
@@ -1520,7 +1525,7 @@ CREATE TABLE `cursos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cursos`
+-- Despejando dados para a tabela `cursos`
 --
 
 INSERT INTO `cursos` (`id_cursos`, `nome`, `carga_horaria`, `duracao`, `descricao`, `id_coordenadores`) VALUES
@@ -1533,7 +1538,7 @@ INSERT INTO `cursos` (`id_cursos`, `nome`, `carga_horaria`, `duracao`, `descrica
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cursos_disciplinas`
+-- Estrutura para tabela `cursos_disciplinas`
 --
 
 DROP TABLE IF EXISTS `cursos_disciplinas`;
@@ -1544,7 +1549,7 @@ CREATE TABLE `cursos_disciplinas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cursos_disciplinas`
+-- Despejando dados para a tabela `cursos_disciplinas`
 --
 
 INSERT INTO `cursos_disciplinas` (`id_cursos_disciplinas`, `id_cursos`, `id_disciplinas`) VALUES
@@ -1602,7 +1607,7 @@ INSERT INTO `cursos_disciplinas` (`id_cursos_disciplinas`, `id_cursos`, `id_disc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `disciplinas`
+-- Estrutura para tabela `disciplinas`
 --
 
 DROP TABLE IF EXISTS `disciplinas`;
@@ -1613,7 +1618,7 @@ CREATE TABLE `disciplinas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `disciplinas`
+-- Despejando dados para a tabela `disciplinas`
 --
 
 INSERT INTO `disciplinas` (`id_disciplinas`, `carga_horaria`, `nome`) VALUES
@@ -1671,7 +1676,7 @@ INSERT INTO `disciplinas` (`id_disciplinas`, `carga_horaria`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `disciplinas_professores`
+-- Estrutura para tabela `disciplinas_professores`
 --
 
 DROP TABLE IF EXISTS `disciplinas_professores`;
@@ -1682,7 +1687,7 @@ CREATE TABLE `disciplinas_professores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `disciplinas_professores`
+-- Despejando dados para a tabela `disciplinas_professores`
 --
 
 INSERT INTO `disciplinas_professores` (`id_disciplinas_professores`, `id_disciplinas`, `id_professores`) VALUES
@@ -1740,7 +1745,7 @@ INSERT INTO `disciplinas_professores` (`id_disciplinas_professores`, `id_discipl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `formacoes`
+-- Estrutura para tabela `formacoes`
 --
 
 DROP TABLE IF EXISTS `formacoes`;
@@ -1750,19 +1755,20 @@ CREATE TABLE `formacoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `formacoes`
+-- Despejando dados para a tabela `formacoes`
 --
 
 INSERT INTO `formacoes` (`id_formacoes`, `formacao`) VALUES
 (1, 'Análise e Desenvolvimento de Sistemas'),
 (2, 'Administração'),
 (3, 'Logística'),
-(4, 'Gestão de Recursos Humanos');
+(4, 'Gestão de Recursos Humanos'),
+(5, 'Gestão Empresarial');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `matriculas`
+-- Estrutura para tabela `matriculas`
 --
 
 DROP TABLE IF EXISTS `matriculas`;
@@ -1775,7 +1781,7 @@ CREATE TABLE `matriculas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `matriculas`
+-- Despejando dados para a tabela `matriculas`
 --
 
 INSERT INTO `matriculas` (`id_matriculas`, `id_alunos`, `id_turmas`, `situacao_da_matricula`, `data_matricula`) VALUES
@@ -2033,7 +2039,7 @@ INSERT INTO `matriculas` (`id_matriculas`, `id_alunos`, `id_turmas`, `situacao_d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notas`
+-- Estrutura para tabela `notas`
 --
 
 DROP TABLE IF EXISTS `notas`;
@@ -2047,7 +2053,7 @@ CREATE TABLE `notas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `professores`
+-- Estrutura para tabela `professores`
 --
 
 DROP TABLE IF EXISTS `professores`;
@@ -2056,39 +2062,41 @@ CREATE TABLE `professores` (
   `nome` varchar(100) NOT NULL,
   `cpf` char(11) NOT NULL,
   `id_formacoes` int(11) DEFAULT NULL,
-  `id_contato` int(11) DEFAULT NULL
+  `id_contato` int(11) DEFAULT NULL,
+  `status` char(1) NOT NULL DEFAULT 'A' COMMENT 'A = Ativo, I = Inativo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `professores`
+-- Despejando dados para a tabela `professores`
 --
 
-INSERT INTO `professores` (`id_professores`, `nome`, `cpf`, `id_formacoes`, `id_contato`) VALUES
-(1, 'Adriano Martins Silva', '20100000001', 1, 6),
-(2, 'Bruna Ferreira Costa', '20100000002', 2, 7),
-(3, 'Cesar Augusto Ribeiro', '20100000003', 3, 8),
-(4, 'Debora Almeida Santos', '20100000004', 4, 9),
-(5, 'Everton Rocha Lima', '20100000005', 1, 10),
-(6, 'Flavia Mendes Carvalho', '20100000006', 2, 11),
-(7, 'Gilberto Nunes Pereira', '20100000007', 3, 12),
-(8, 'Heloisa Barbosa Souza', '20100000008', 4, 13),
-(9, 'Ivan Teixeira Gomes', '20100000009', 1, 14),
-(10, 'Jessica Andrade Martins', '20100000010', 2, 15),
-(11, 'Kaua Rodrigues Freitas', '20100000011', 3, 16),
-(12, 'Luciana Campos Oliveira', '20100000012', 4, 17),
-(13, 'Mauricio Fernandes Lopes', '20100000013', 1, 18),
-(14, 'Nadia Cristina Araujo', '20100000014', 2, 19),
-(15, 'Orlando Batista Rocha', '20100000015', 3, 20),
-(16, 'Paula Regina Moraes', '20100000016', 4, 21),
-(17, 'Quirino Alves Cardoso', '20100000017', 1, 22),
-(18, 'Renata Guimaraes Pinto', '20100000018', 2, 23),
-(19, 'Sergio Henrique Duarte', '20100000019', 3, 24),
-(20, 'Tatiana Ribeiro Farias', '20100000020', 4, 25);
+INSERT INTO `professores` (`id_professores`, `nome`, `cpf`, `id_formacoes`, `id_contato`, `status`) VALUES
+(1, 'Adriano Martins', '21100000001', 1, 6, 'A'),
+(2, 'Bruna Ferreira Costa', '20100000002', 5, 7, 'A'),
+(3, 'Cesar Augusto Ribeiro', '20100000003', 3, 8, 'I'),
+(4, 'Debora Almeida Santos', '20100000004', 4, 9, 'A'),
+(5, 'Everton Rocha Lima', '20100000005', 1, 10, 'A'),
+(6, 'Flavia Mendes Carvalho', '20100000006', 2, 11, 'A'),
+(7, 'Gilberto Nunes Pereira', '20100000007', 3, 12, 'A'),
+(8, 'Heloisa Barbosa Souza', '20100000008', 4, 13, 'A'),
+(9, 'Ivan Teixeira Gomes', '20100000009', 1, 14, 'A'),
+(10, 'Jessica Andrade Martins', '20100000010', 2, 15, 'A'),
+(11, 'Kaua Rodrigues Freitas', '20100000011', 3, 16, 'A'),
+(12, 'Luciana Campos Oliveira', '20100000012', 4, 17, 'A'),
+(13, 'Mauricio Fernandes Lopes', '20100000013', 1, 18, 'A'),
+(14, 'Nadia Cristina Araujo', '20100000014', 2, 19, 'A'),
+(15, 'Orlando Batista Rocha', '20100000015', 3, 20, 'A'),
+(16, 'Paula Regina Moraes', '20100000016', 4, 21, 'A'),
+(17, 'Quirino Alves Cardoso', '20100000017', 1, 22, 'A'),
+(18, 'Renata Guimaraes Pinto', '20100000018', 2, 23, 'A'),
+(19, 'Sergio Henrique Duarte', '20100000019', 3, 24, 'A'),
+(20, 'Tatiana Ribeiro Farias', '20100000020', 4, 25, 'A'),
+(21, 'Daiane Santos ', '32358647524', 2, 526, 'A');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `responsaveis`
+-- Estrutura para tabela `responsaveis`
 --
 
 DROP TABLE IF EXISTS `responsaveis`;
@@ -2101,7 +2109,7 @@ CREATE TABLE `responsaveis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `responsaveis`
+-- Despejando dados para a tabela `responsaveis`
 --
 
 INSERT INTO `responsaveis` (`id_responsaveis`, `nome`, `cpf`, `id_contato`, `parentesco`) VALUES
@@ -2359,7 +2367,7 @@ INSERT INTO `responsaveis` (`id_responsaveis`, `nome`, `cpf`, `id_contato`, `par
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ruas`
+-- Estrutura para tabela `ruas`
 --
 
 DROP TABLE IF EXISTS `ruas`;
@@ -2371,16 +2379,17 @@ CREATE TABLE `ruas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `ruas`
+-- Despejando dados para a tabela `ruas`
 --
 
 INSERT INTO `ruas` (`id_rua`, `nome_da_rua`, `cep`, `id_bairro`) VALUES
-(1, 'Avenida Cidade Jardim', '12231000', 1);
+(1, 'Avenida Cidade Jardim', '12231000', 1),
+(2, 'R. José Antônio Vieira', '14474531', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `turmas`
+-- Estrutura para tabela `turmas`
 --
 
 DROP TABLE IF EXISTS `turmas`;
@@ -2393,7 +2402,7 @@ CREATE TABLE `turmas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `turmas`
+-- Despejando dados para a tabela `turmas`
 --
 
 INSERT INTO `turmas` (`id_turmas`, `turno`, `sala`, `ano_letivo`, `id_cursos`) VALUES
@@ -2406,7 +2415,7 @@ INSERT INTO `turmas` (`id_turmas`, `turno`, `sala`, `ano_letivo`, `id_cursos`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uf`
+-- Estrutura para tabela `uf`
 --
 
 DROP TABLE IF EXISTS `uf`;
@@ -2417,7 +2426,7 @@ CREATE TABLE `uf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `uf`
+-- Despejando dados para a tabela `uf`
 --
 
 INSERT INTO `uf` (`id_uf`, `nome`, `sigla`) VALUES
@@ -2426,8 +2435,8 @@ INSERT INTO `uf` (`id_uf`, `nome`, `sigla`) VALUES
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_alunos_cursos`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_alunos_cursos`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_alunos_cursos`;
 CREATE TABLE `view_alunos_cursos` (
@@ -2442,8 +2451,8 @@ CREATE TABLE `view_alunos_cursos` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_alunos_disciplinas_notas`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_alunos_disciplinas_notas`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_alunos_disciplinas_notas`;
 CREATE TABLE `view_alunos_disciplinas_notas` (
@@ -2457,8 +2466,8 @@ CREATE TABLE `view_alunos_disciplinas_notas` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_alunos_responsaveis`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_alunos_responsaveis`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_alunos_responsaveis`;
 CREATE TABLE `view_alunos_responsaveis` (
@@ -2473,8 +2482,8 @@ CREATE TABLE `view_alunos_responsaveis` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_alunos_turmas_cursos`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_alunos_turmas_cursos`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_alunos_turmas_cursos`;
 CREATE TABLE `view_alunos_turmas_cursos` (
@@ -2489,8 +2498,8 @@ CREATE TABLE `view_alunos_turmas_cursos` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_desempenho_academico`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_desempenho_academico`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_desempenho_academico`;
 CREATE TABLE `view_desempenho_academico` (
@@ -2506,8 +2515,8 @@ CREATE TABLE `view_desempenho_academico` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_disciplinas_cursos_professores`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_disciplinas_cursos_professores`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_disciplinas_cursos_professores`;
 CREATE TABLE `view_disciplinas_cursos_professores` (
@@ -2520,8 +2529,8 @@ CREATE TABLE `view_disciplinas_cursos_professores` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_disciplinas_professores`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_disciplinas_professores`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_disciplinas_professores`;
 CREATE TABLE `view_disciplinas_professores` (
@@ -2536,8 +2545,8 @@ CREATE TABLE `view_disciplinas_professores` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_professor_disciplina_aluno`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_professor_disciplina_aluno`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_professor_disciplina_aluno`;
 CREATE TABLE `view_professor_disciplina_aluno` (
@@ -2553,8 +2562,8 @@ CREATE TABLE `view_professor_disciplina_aluno` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_relatorio_academico`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_relatorio_academico`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_relatorio_academico`;
 CREATE TABLE `view_relatorio_academico` (
@@ -2572,8 +2581,8 @@ CREATE TABLE `view_relatorio_academico` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_situacao_matriculas`
--- (See below for the actual view)
+-- Estrutura stand-in para view `view_situacao_matriculas`
+-- (Veja abaixo para a visão atual)
 --
 DROP VIEW IF EXISTS `view_situacao_matriculas`;
 CREATE TABLE `view_situacao_matriculas` (
@@ -2589,7 +2598,7 @@ CREATE TABLE `view_situacao_matriculas` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_alunos_cursos`
+-- Estrutura para view `view_alunos_cursos`
 --
 DROP TABLE IF EXISTS `view_alunos_cursos`;
 
@@ -2599,7 +2608,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_alunos_disciplinas_notas`
+-- Estrutura para view `view_alunos_disciplinas_notas`
 --
 DROP TABLE IF EXISTS `view_alunos_disciplinas_notas`;
 
@@ -2609,7 +2618,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_alunos_responsaveis`
+-- Estrutura para view `view_alunos_responsaveis`
 --
 DROP TABLE IF EXISTS `view_alunos_responsaveis`;
 
@@ -2619,7 +2628,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_alunos_turmas_cursos`
+-- Estrutura para view `view_alunos_turmas_cursos`
 --
 DROP TABLE IF EXISTS `view_alunos_turmas_cursos`;
 
@@ -2629,7 +2638,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_desempenho_academico`
+-- Estrutura para view `view_desempenho_academico`
 --
 DROP TABLE IF EXISTS `view_desempenho_academico`;
 
@@ -2639,7 +2648,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_disciplinas_cursos_professores`
+-- Estrutura para view `view_disciplinas_cursos_professores`
 --
 DROP TABLE IF EXISTS `view_disciplinas_cursos_professores`;
 
@@ -2649,7 +2658,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_disciplinas_professores`
+-- Estrutura para view `view_disciplinas_professores`
 --
 DROP TABLE IF EXISTS `view_disciplinas_professores`;
 
@@ -2659,7 +2668,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_professor_disciplina_aluno`
+-- Estrutura para view `view_professor_disciplina_aluno`
 --
 DROP TABLE IF EXISTS `view_professor_disciplina_aluno`;
 
@@ -2669,7 +2678,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_relatorio_academico`
+-- Estrutura para view `view_relatorio_academico`
 --
 DROP TABLE IF EXISTS `view_relatorio_academico`;
 
@@ -2679,7 +2688,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_situacao_matriculas`
+-- Estrutura para view `view_situacao_matriculas`
 --
 DROP TABLE IF EXISTS `view_situacao_matriculas`;
 
@@ -2687,11 +2696,11 @@ DROP VIEW IF EXISTS `view_situacao_matriculas`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_situacao_matriculas`  AS SELECT `alunos`.`nome` AS `aluno`, `cursos`.`nome` AS `curso`, `turmas`.`id_turmas` AS `turma`, `matriculas`.`data_matricula` AS `data_matricula`, `matriculas`.`situacao_da_matricula` AS `situacao_matricula`, `turmas`.`ano_letivo` AS `ano_letivo`, `turmas`.`turno` AS `turno` FROM (((`matriculas` join `alunos` on(`matriculas`.`id_alunos` = `alunos`.`id_alunos`)) join `turmas` on(`matriculas`.`id_turmas` = `turmas`.`id_turmas`)) join `cursos` on(`turmas`.`id_cursos` = `cursos`.`id_cursos`)) ;
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `alunos`
+-- Índices de tabela `alunos`
 --
 ALTER TABLE `alunos`
   ADD PRIMARY KEY (`id_alunos`),
@@ -2699,7 +2708,7 @@ ALTER TABLE `alunos`
   ADD KEY `id_rua` (`id_rua`);
 
 --
--- Indexes for table `alunos_responsaveis`
+-- Índices de tabela `alunos_responsaveis`
 --
 ALTER TABLE `alunos_responsaveis`
   ADD PRIMARY KEY (`id_alunos_responsaveis`),
@@ -2707,7 +2716,7 @@ ALTER TABLE `alunos_responsaveis`
   ADD KEY `id_responsaveis` (`id_responsaveis`);
 
 --
--- Indexes for table `avaliacoes`
+-- Índices de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD PRIMARY KEY (`id_avaliacoes`),
@@ -2715,21 +2724,21 @@ ALTER TABLE `avaliacoes`
   ADD KEY `id_alunos` (`id_alunos`);
 
 --
--- Indexes for table `bairros`
+-- Índices de tabela `bairros`
 --
 ALTER TABLE `bairros`
   ADD PRIMARY KEY (`id_bairro`),
   ADD KEY `id_cidade` (`id_cidade`);
 
 --
--- Indexes for table `boletins`
+-- Índices de tabela `boletins`
 --
 ALTER TABLE `boletins`
   ADD PRIMARY KEY (`id_boletins`),
   ADD KEY `id_matriculas` (`id_matriculas`);
 
 --
--- Indexes for table `boletins_disciplinas`
+-- Índices de tabela `boletins_disciplinas`
 --
 ALTER TABLE `boletins_disciplinas`
   ADD PRIMARY KEY (`id_boletins_disciplinas`),
@@ -2737,20 +2746,20 @@ ALTER TABLE `boletins_disciplinas`
   ADD KEY `id_disciplinas` (`id_disciplinas`);
 
 --
--- Indexes for table `cidades`
+-- Índices de tabela `cidades`
 --
 ALTER TABLE `cidades`
   ADD PRIMARY KEY (`id_cidade`),
   ADD KEY `id_uf` (`id_uf`);
 
 --
--- Indexes for table `contatos`
+-- Índices de tabela `contatos`
 --
 ALTER TABLE `contatos`
   ADD PRIMARY KEY (`id_contato`);
 
 --
--- Indexes for table `coordenadores`
+-- Índices de tabela `coordenadores`
 --
 ALTER TABLE `coordenadores`
   ADD PRIMARY KEY (`id_coordenadores`),
@@ -2758,14 +2767,14 @@ ALTER TABLE `coordenadores`
   ADD KEY `id_formacoes` (`id_formacoes`);
 
 --
--- Indexes for table `cursos`
+-- Índices de tabela `cursos`
 --
 ALTER TABLE `cursos`
   ADD PRIMARY KEY (`id_cursos`),
   ADD KEY `id_coordenadores` (`id_coordenadores`);
 
 --
--- Indexes for table `cursos_disciplinas`
+-- Índices de tabela `cursos_disciplinas`
 --
 ALTER TABLE `cursos_disciplinas`
   ADD PRIMARY KEY (`id_cursos_disciplinas`),
@@ -2773,13 +2782,13 @@ ALTER TABLE `cursos_disciplinas`
   ADD KEY `id_disciplinas` (`id_disciplinas`);
 
 --
--- Indexes for table `disciplinas`
+-- Índices de tabela `disciplinas`
 --
 ALTER TABLE `disciplinas`
   ADD PRIMARY KEY (`id_disciplinas`);
 
 --
--- Indexes for table `disciplinas_professores`
+-- Índices de tabela `disciplinas_professores`
 --
 ALTER TABLE `disciplinas_professores`
   ADD PRIMARY KEY (`id_disciplinas_professores`),
@@ -2787,13 +2796,13 @@ ALTER TABLE `disciplinas_professores`
   ADD KEY `id_professores` (`id_professores`);
 
 --
--- Indexes for table `formacoes`
+-- Índices de tabela `formacoes`
 --
 ALTER TABLE `formacoes`
   ADD PRIMARY KEY (`id_formacoes`);
 
 --
--- Indexes for table `matriculas`
+-- Índices de tabela `matriculas`
 --
 ALTER TABLE `matriculas`
   ADD PRIMARY KEY (`id_matriculas`),
@@ -2801,7 +2810,7 @@ ALTER TABLE `matriculas`
   ADD KEY `id_turmas` (`id_turmas`);
 
 --
--- Indexes for table `notas`
+-- Índices de tabela `notas`
 --
 ALTER TABLE `notas`
   ADD PRIMARY KEY (`id_notas`),
@@ -2809,7 +2818,7 @@ ALTER TABLE `notas`
   ADD KEY `id_avaliacoes` (`id_avaliacoes`);
 
 --
--- Indexes for table `professores`
+-- Índices de tabela `professores`
 --
 ALTER TABLE `professores`
   ADD PRIMARY KEY (`id_professores`),
@@ -2817,274 +2826,274 @@ ALTER TABLE `professores`
   ADD KEY `id_contato` (`id_contato`);
 
 --
--- Indexes for table `responsaveis`
+-- Índices de tabela `responsaveis`
 --
 ALTER TABLE `responsaveis`
   ADD PRIMARY KEY (`id_responsaveis`),
   ADD KEY `id_contato` (`id_contato`);
 
 --
--- Indexes for table `ruas`
+-- Índices de tabela `ruas`
 --
 ALTER TABLE `ruas`
   ADD PRIMARY KEY (`id_rua`),
   ADD KEY `id_bairro` (`id_bairro`);
 
 --
--- Indexes for table `turmas`
+-- Índices de tabela `turmas`
 --
 ALTER TABLE `turmas`
   ADD PRIMARY KEY (`id_turmas`),
   ADD KEY `id_cursos` (`id_cursos`);
 
 --
--- Indexes for table `uf`
+-- Índices de tabela `uf`
 --
 ALTER TABLE `uf`
   ADD PRIMARY KEY (`id_uf`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `alunos`
+-- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_alunos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
+  MODIFY `id_alunos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 
 --
--- AUTO_INCREMENT for table `alunos_responsaveis`
+-- AUTO_INCREMENT de tabela `alunos_responsaveis`
 --
 ALTER TABLE `alunos_responsaveis`
   MODIFY `id_alunos_responsaveis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=326;
 
 --
--- AUTO_INCREMENT for table `avaliacoes`
+-- AUTO_INCREMENT de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   MODIFY `id_avaliacoes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
--- AUTO_INCREMENT for table `bairros`
+-- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `id_bairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_bairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `boletins`
+-- AUTO_INCREMENT de tabela `boletins`
 --
 ALTER TABLE `boletins`
   MODIFY `id_boletins` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `boletins_disciplinas`
+-- AUTO_INCREMENT de tabela `boletins_disciplinas`
 --
 ALTER TABLE `boletins_disciplinas`
   MODIFY `id_boletins_disciplinas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `cidades`
+-- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
   MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `contatos`
+-- AUTO_INCREMENT de tabela `contatos`
 --
 ALTER TABLE `contatos`
-  MODIFY `id_contato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=526;
+  MODIFY `id_contato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=528;
 
 --
--- AUTO_INCREMENT for table `coordenadores`
+-- AUTO_INCREMENT de tabela `coordenadores`
 --
 ALTER TABLE `coordenadores`
   MODIFY `id_coordenadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `cursos`
+-- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
   MODIFY `id_cursos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `cursos_disciplinas`
+-- AUTO_INCREMENT de tabela `cursos_disciplinas`
 --
 ALTER TABLE `cursos_disciplinas`
   MODIFY `id_cursos_disciplinas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- AUTO_INCREMENT for table `disciplinas`
+-- AUTO_INCREMENT de tabela `disciplinas`
 --
 ALTER TABLE `disciplinas`
   MODIFY `id_disciplinas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- AUTO_INCREMENT for table `disciplinas_professores`
+-- AUTO_INCREMENT de tabela `disciplinas_professores`
 --
 ALTER TABLE `disciplinas_professores`
   MODIFY `id_disciplinas_professores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- AUTO_INCREMENT for table `formacoes`
+-- AUTO_INCREMENT de tabela `formacoes`
 --
 ALTER TABLE `formacoes`
-  MODIFY `id_formacoes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_formacoes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `matriculas`
+-- AUTO_INCREMENT de tabela `matriculas`
 --
 ALTER TABLE `matriculas`
   MODIFY `id_matriculas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 
 --
--- AUTO_INCREMENT for table `notas`
+-- AUTO_INCREMENT de tabela `notas`
 --
 ALTER TABLE `notas`
   MODIFY `id_notas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `professores`
+-- AUTO_INCREMENT de tabela `professores`
 --
 ALTER TABLE `professores`
-  MODIFY `id_professores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_professores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `responsaveis`
+-- AUTO_INCREMENT de tabela `responsaveis`
 --
 ALTER TABLE `responsaveis`
   MODIFY `id_responsaveis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 
 --
--- AUTO_INCREMENT for table `ruas`
+-- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `id_rua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_rua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `turmas`
+-- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
   MODIFY `id_turmas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `uf`
+-- AUTO_INCREMENT de tabela `uf`
 --
 ALTER TABLE `uf`
   MODIFY `id_uf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Restrições para tabelas despejadas
 --
 
 --
--- Constraints for table `alunos`
+-- Restrições para tabelas `alunos`
 --
 ALTER TABLE `alunos`
   ADD CONSTRAINT `alunos_ibfk_1` FOREIGN KEY (`id_contato`) REFERENCES `contatos` (`id_contato`),
   ADD CONSTRAINT `alunos_ibfk_2` FOREIGN KEY (`id_rua`) REFERENCES `ruas` (`id_rua`);
 
 --
--- Constraints for table `alunos_responsaveis`
+-- Restrições para tabelas `alunos_responsaveis`
 --
 ALTER TABLE `alunos_responsaveis`
   ADD CONSTRAINT `alunos_responsaveis_ibfk_1` FOREIGN KEY (`id_alunos`) REFERENCES `alunos` (`id_alunos`),
   ADD CONSTRAINT `alunos_responsaveis_ibfk_2` FOREIGN KEY (`id_responsaveis`) REFERENCES `responsaveis` (`id_responsaveis`);
 
 --
--- Constraints for table `avaliacoes`
+-- Restrições para tabelas `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD CONSTRAINT `avaliacoes_ibfk_1` FOREIGN KEY (`id_disciplinas`) REFERENCES `disciplinas` (`id_disciplinas`),
   ADD CONSTRAINT `avaliacoes_ibfk_2` FOREIGN KEY (`id_alunos`) REFERENCES `alunos` (`id_alunos`);
 
 --
--- Constraints for table `bairros`
+-- Restrições para tabelas `bairros`
 --
 ALTER TABLE `bairros`
   ADD CONSTRAINT `bairros_ibfk_1` FOREIGN KEY (`id_cidade`) REFERENCES `cidades` (`id_cidade`);
 
 --
--- Constraints for table `boletins`
+-- Restrições para tabelas `boletins`
 --
 ALTER TABLE `boletins`
   ADD CONSTRAINT `boletins_ibfk_1` FOREIGN KEY (`id_matriculas`) REFERENCES `matriculas` (`id_matriculas`);
 
 --
--- Constraints for table `boletins_disciplinas`
+-- Restrições para tabelas `boletins_disciplinas`
 --
 ALTER TABLE `boletins_disciplinas`
   ADD CONSTRAINT `boletins_disciplinas_ibfk_1` FOREIGN KEY (`id_boletins`) REFERENCES `boletins` (`id_boletins`),
   ADD CONSTRAINT `boletins_disciplinas_ibfk_2` FOREIGN KEY (`id_disciplinas`) REFERENCES `disciplinas` (`id_disciplinas`);
 
 --
--- Constraints for table `cidades`
+-- Restrições para tabelas `cidades`
 --
 ALTER TABLE `cidades`
   ADD CONSTRAINT `cidades_ibfk_1` FOREIGN KEY (`id_uf`) REFERENCES `uf` (`id_uf`);
 
 --
--- Constraints for table `coordenadores`
+-- Restrições para tabelas `coordenadores`
 --
 ALTER TABLE `coordenadores`
   ADD CONSTRAINT `coordenadores_ibfk_1` FOREIGN KEY (`id_contato`) REFERENCES `contatos` (`id_contato`),
   ADD CONSTRAINT `coordenadores_ibfk_2` FOREIGN KEY (`id_formacoes`) REFERENCES `formacoes` (`id_formacoes`);
 
 --
--- Constraints for table `cursos`
+-- Restrições para tabelas `cursos`
 --
 ALTER TABLE `cursos`
   ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`id_coordenadores`) REFERENCES `coordenadores` (`id_coordenadores`);
 
 --
--- Constraints for table `cursos_disciplinas`
+-- Restrições para tabelas `cursos_disciplinas`
 --
 ALTER TABLE `cursos_disciplinas`
   ADD CONSTRAINT `cursos_disciplinas_ibfk_1` FOREIGN KEY (`id_cursos`) REFERENCES `cursos` (`id_cursos`),
   ADD CONSTRAINT `cursos_disciplinas_ibfk_2` FOREIGN KEY (`id_disciplinas`) REFERENCES `disciplinas` (`id_disciplinas`);
 
 --
--- Constraints for table `disciplinas_professores`
+-- Restrições para tabelas `disciplinas_professores`
 --
 ALTER TABLE `disciplinas_professores`
   ADD CONSTRAINT `disciplinas_professores_ibfk_1` FOREIGN KEY (`id_disciplinas`) REFERENCES `disciplinas` (`id_disciplinas`),
   ADD CONSTRAINT `disciplinas_professores_ibfk_2` FOREIGN KEY (`id_professores`) REFERENCES `professores` (`id_professores`);
 
 --
--- Constraints for table `matriculas`
+-- Restrições para tabelas `matriculas`
 --
 ALTER TABLE `matriculas`
   ADD CONSTRAINT `matriculas_ibfk_1` FOREIGN KEY (`id_alunos`) REFERENCES `alunos` (`id_alunos`),
   ADD CONSTRAINT `matriculas_ibfk_2` FOREIGN KEY (`id_turmas`) REFERENCES `turmas` (`id_turmas`);
 
 --
--- Constraints for table `notas`
+-- Restrições para tabelas `notas`
 --
 ALTER TABLE `notas`
   ADD CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`id_alunos`) REFERENCES `alunos` (`id_alunos`),
   ADD CONSTRAINT `notas_ibfk_2` FOREIGN KEY (`id_avaliacoes`) REFERENCES `avaliacoes` (`id_avaliacoes`);
 
 --
--- Constraints for table `professores`
+-- Restrições para tabelas `professores`
 --
 ALTER TABLE `professores`
   ADD CONSTRAINT `professores_ibfk_1` FOREIGN KEY (`id_formacoes`) REFERENCES `formacoes` (`id_formacoes`),
   ADD CONSTRAINT `professores_ibfk_2` FOREIGN KEY (`id_contato`) REFERENCES `contatos` (`id_contato`);
 
 --
--- Constraints for table `responsaveis`
+-- Restrições para tabelas `responsaveis`
 --
 ALTER TABLE `responsaveis`
   ADD CONSTRAINT `responsaveis_ibfk_1` FOREIGN KEY (`id_contato`) REFERENCES `contatos` (`id_contato`);
 
 --
--- Constraints for table `ruas`
+-- Restrições para tabelas `ruas`
 --
 ALTER TABLE `ruas`
   ADD CONSTRAINT `ruas_ibfk_1` FOREIGN KEY (`id_bairro`) REFERENCES `bairros` (`id_bairro`);
 
 --
--- Constraints for table `turmas`
+-- Restrições para tabelas `turmas`
 --
 ALTER TABLE `turmas`
   ADD CONSTRAINT `turmas_ibfk_1` FOREIGN KEY (`id_cursos`) REFERENCES `cursos` (`id_cursos`);

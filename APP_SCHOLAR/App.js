@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Alert } from 'react-native';
 import HomeScreen from './Screen/HomeScreen';
 import SobreScreen from './Screen/SobreScreen';
 import ConsultaAlunosScreen from './Screen/ConsultaAlunosScreen';
@@ -34,24 +34,7 @@ import CadastroBoletimScreen from './Screen/CadastroBoletimScreen';
 import EditarBoletimScreen from './Screen/EditarBoletimScreen';
 
 // Endereço base da API PHP. Troque SEU_IP pelo IPv4 do seu computador (o mesmo do ipconfig).
-const API_URL = "http://192.168.0.8/app_scholar_api";
-
-const professoresIniciais = [
-  {
-    id_professores: '1',
-    nome: 'Carlos Eduardo Lima',
-    cpf: '12345678900',
-    id_formacoes: '1',
-    id_contato: '1',
-  },
-  {
-    id_professores: '2',
-    nome: 'Ana Paula Rodrigues',
-    cpf: '98765432100',
-    id_formacoes: '2',
-    id_contato: '2',
-  },
-];
+const API_URL = "http://SEU_IP/app_scholar_api";
 
 const turmasIniciais = [
   {
@@ -135,8 +118,9 @@ export default function App() {
   const [alunos, setAlunos] = useState([]);
   const [alunoSelecionado, setAlunoSelecionado] = useState(null);
 
-  const [professores, setProfessores] = useState(professoresIniciais);
+  const [professores, setProfessores] = useState([]);
   const [professorSelecionado, setProfessorSelecionado] = useState(null);
+  const [formacoes, setFormacoes] = useState([]);
 
   const [turmas, setTurmas] = useState(turmasIniciais);
   const [turmaSelecionada, setTurmaSelecionada] = useState(null);
@@ -178,11 +162,16 @@ export default function App() {
 
   async function adicionarAluno(novoAluno) {
     try {
-      await fetch(`${API_URL}/cadastrar_aluno.php`, {
+      const resposta = await fetch(`${API_URL}/cadastrar_aluno.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novoAluno),
       });
+      const resultado = await resposta.json();
+      if (!resultado.sucesso) {
+        Alert.alert("Erro", resultado.erro || "Não foi possível cadastrar o aluno.");
+        return;
+      }
       await buscarAlunos();
     } catch (erro) {
       console.log("Erro ao cadastrar aluno:", erro);
@@ -192,11 +181,16 @@ export default function App() {
 
   async function atualizarAluno(alunoAtualizado) {
     try {
-      await fetch(`${API_URL}/editar_aluno.php`, {
+      const resposta = await fetch(`${API_URL}/editar_aluno.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(alunoAtualizado),
       });
+      const resultado = await resposta.json();
+      if (!resultado.sucesso) {
+        Alert.alert("Erro", resultado.erro || "Não foi possível salvar as alterações.");
+        return;
+      }
       await buscarAlunos();
     } catch (erro) {
       console.log("Erro ao editar aluno:", erro);
@@ -218,22 +212,82 @@ export default function App() {
     setTelaAtual('Alunos');
   }
 
-  function adicionarProfessor(novoProfessor) {
-    setProfessores([...professores, novoProfessor]);
+  const buscarFormacoes = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/formacoes.php`);
+      const dados = await resposta.json();
+      setFormacoes(dados);
+    } catch (erro) {
+      console.log("Erro ao buscar formações:", erro);
+    }
+  };
+
+  const buscarProfessores = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/professores.php`);
+      const dados = await resposta.json();
+      setProfessores(dados);
+    } catch (erro) {
+      console.log("Erro ao buscar professores:", erro);
+    }
+  };
+
+  useEffect(() => {
+    buscarProfessores();
+    buscarFormacoes();
+  }, []);
+
+  async function adicionarProfessor(novoProfessor) {
+    try {
+      const resposta = await fetch(`${API_URL}/cadastrar_professor.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(novoProfessor),
+      });
+      const resultado = await resposta.json();
+      if (!resultado.sucesso) {
+        Alert.alert("Erro", "Não foi possível cadastrar o professor.");
+        return;
+      }
+      await buscarProfessores();
+      await buscarFormacoes();
+    } catch (erro) {
+      console.log("Erro ao cadastrar professor:", erro);
+    }
     setTelaAtual('Professores');
   }
 
-  function atualizarProfessor(professorAtualizado) {
-    setProfessores(
-      professores.map((p) =>
-        p.id_professores === professorAtualizado.id_professores ? professorAtualizado : p
-      )
-    );
+  async function atualizarProfessor(professorAtualizado) {
+    try {
+      const resposta = await fetch(`${API_URL}/editar_professor.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(professorAtualizado),
+      });
+      const resultado = await resposta.json();
+      if (!resultado.sucesso) {
+        Alert.alert("Erro", "Não foi possível salvar as alterações.");
+        return;
+      }
+      await buscarProfessores();
+      await buscarFormacoes();
+    } catch (erro) {
+      console.log("Erro ao editar professor:", erro);
+    }
     setTelaAtual('Professores');
   }
 
-  function excluirProfessor(id_professores) {
-    setProfessores(professores.filter((p) => p.id_professores !== id_professores));
+  async function excluirProfessor(id_professores) {
+    try {
+      await fetch(`${API_URL}/excluir_professor.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id_professores }),
+      });
+      await buscarProfessores();
+    } catch (erro) {
+      console.log("Erro ao excluir professor:", erro);
+    }
     setTelaAtual('Professores');
   }
 
@@ -447,6 +501,7 @@ export default function App() {
 
         {telaAtual === 'CadastroProfessor' && (
           <CadastroProfessorScreen
+            formacoes={formacoes}
             onSalvar={adicionarProfessor}
             onCancelar={() => setTelaAtual('Professores')}
           />
@@ -455,6 +510,7 @@ export default function App() {
         {telaAtual === 'EditarProfessor' && (
           <EditarProfessorScreen
             professor={professorSelecionado}
+            formacoes={formacoes}
             onSalvar={atualizarProfessor}
             onCancelar={() => setTelaAtual('Professores')}
             onExcluir={excluirProfessor}

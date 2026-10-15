@@ -10,8 +10,8 @@ Repositório com as atividades e trabalhos desenvolvidos durante o curso Técnic
 
 ```
 mdbdlais/
-├── APP_SCHOLAR/          # Aplicativo mobile (3º bimestre)
-├── MDBD/                 # Documentação do banco de dados escolar
+├── APP_SCHOLAR/          # Aplicativo mobile (4º bimestre)
+├── MDBD/                 # Documentação do banco de dados escolar, SQL e modelagem (4ºbimestre)
 ├── atividadebd3/         # Primeira versão do banco escolar (2º bimestre)
 ├── modelagem/            # Atividade avaliativa de modelagem (2º bimestre)
 └── README.md
@@ -19,8 +19,8 @@ mdbdlais/
 
 | Pasta | Conteúdo | Bimestre |
 |-------|----------|----------|
-| [`APP_SCHOLAR`](./APP_SCHOLAR) | Aplicativo mobile escolar | 3º |
-| [`MDBD`](./MDBD) | Documento, dicionário de dados, SQL e modelagem do banco escolar atual | 3º |
+| [`APP_SCHOLAR`](./APP_SCHOLAR) | Aplicativo mobile escolar | 4º |
+| [`MDBD`](./MDBD) | Documento, dicionário de dados, SQL e modelagem do banco escolar atual | 4º |
 | [`atividadebd3`](./atividadebd3) | Primeira versão do banco escolar | 2º |
 | [`modelagem`](./modelagem) | Exercícios de relacionamentos e chaves | 2º |
 
